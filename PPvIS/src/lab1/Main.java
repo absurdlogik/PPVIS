@@ -7,6 +7,6 @@ public class Main {
         JFrame simpleWindow = new Window().createFrame("Window");
         simpleWindow.setVisible(true);
         simpleWindow.setLocationRelativeTo(null);
-        simpleWindow.setResizable(true);
+        simpleWindow.setResizable(false);
     }
 }

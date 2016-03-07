@@ -1,12 +1,15 @@
 package lab1;
 
 import javax.swing.*;
+
+import java.awt.Dimension;
 import java.awt.event.*;
 import javax.swing.border.*;
 
 public class Task3 {
 	public static Box getPanel3() {
-        final JTextField textField = new JTextField("Enter the text");
+        final JTextField textField = new JTextField();
+        textField.setMaximumSize(new Dimension(500, 30));
         JButton choiceButton = new JButton("Choice button");
         final JRadioButton radioButton1 = new JRadioButton("1");
         final JRadioButton radioButton2 = new JRadioButton("2");
@@ -18,21 +21,29 @@ public class Task3 {
         group.add(radioButton3);
 
         choiceButton.addActionListener(new ActionListener()  {
+        	
+        	@Override
 			public void actionPerformed(ActionEvent event) {
+        		if (textField.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Please enter the text", "Information",
+                            JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
                 if (radioButton1.getText().equals(textField.getText())) {
                     radioButton1.setSelected(!radioButton1.isSelected());
-                    return;
                 }
-                if (radioButton2.getText().equals(textField.getText())) {
+                else if (radioButton2.getText().equals(textField.getText())) {
                     radioButton2.setSelected(!radioButton2.isSelected());
-                    return;
                 }
-                if (radioButton3.getText().equals(textField.getText())) {
+                else if (radioButton3.getText().equals(textField.getText())) {
                     radioButton3.setSelected(!radioButton3.isSelected());
-                    return;
                 }
-                JOptionPane.showMessageDialog(null, "This name does not exist", "Information",
+                else {
+                	JOptionPane.showMessageDialog(null, "This name does not exist", "Information",
                         JOptionPane.WARNING_MESSAGE);
+                }
+                textField.setText("");
+                
             }
         });
         Box horizontalBox = Box.createHorizontalBox();
