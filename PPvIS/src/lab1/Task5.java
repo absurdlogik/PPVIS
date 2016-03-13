@@ -40,7 +40,7 @@ public class Task5 {
                             JOptionPane.WARNING_MESSAGE);
                     return;
                 }
-        		String[] data = {textField.getText(), ""}; 
+        		String[] data = {textField.getText(), null}; 
                 model.addRow(data);
                 textField.setText("");
             }
@@ -64,6 +64,11 @@ public class Task5 {
         				table.setValueAt(data, table.getSelectedRow(), 1);
         				table.setValueAt(null, table.getSelectedRow(), 0);
         			}
+        			else {
+                        JOptionPane.showMessageDialog(null, "Column is empty", "Information",
+                                JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
         		}
             }
         });
@@ -87,6 +92,11 @@ public class Task5 {
         				table.setValueAt(data, table.getSelectedRow(), 0);
         				table.setValueAt(null, table.getSelectedRow(), 1);
         			}
+        			else {
+                        JOptionPane.showMessageDialog(null, "Column is empty", "Information",
+                                JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
         		}
             }
         });

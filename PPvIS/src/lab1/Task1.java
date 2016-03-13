@@ -14,7 +14,7 @@ public class Task1 {
         menu.setMaximumSize(new Dimension(500, 30));
         final JTextField textField = new JTextField();
         textField.setMaximumSize(new Dimension(500, 30));
-        JButton addButton = new JButton("Add");
+        MyButton addButton = new MyButton("Add");
         addButton.addActionListener(new ActionListener()  {
         	
         	@Override

@@ -8,7 +8,7 @@ import javax.swing.border.*;
 
 public class Task2 {
 	public static Box getPanel2() {
-        final JTextField textField = new JTextField();
+        final JTextField textField = new JTextField("");
         textField.setMaximumSize(new Dimension(500, 30));
         final JButton renameButton = new JButton("Rename button");
         final JButton exchangeButton = new JButton("Exchange");
@@ -16,11 +16,6 @@ public class Task2 {
         	
         	@Override
 			public void actionPerformed(ActionEvent event) {
-        		if (textField.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Please enter the text", "Information",
-                            JOptionPane.WARNING_MESSAGE);
-                    return;
-                }
                 String tempButton = exchangeButton.getText();
                 exchangeButton.setText(renameButton.getText());
                 renameButton.setText(tempButton);
@@ -31,6 +26,11 @@ public class Task2 {
         	
         	@Override
 			public void actionPerformed(ActionEvent event) {
+        		if (textField.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Please enter the text", "Information",
+                            JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
                 exchangeButton.setText(textField.getText());
             }
         });
