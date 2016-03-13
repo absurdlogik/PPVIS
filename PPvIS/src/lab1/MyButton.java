@@ -9,13 +9,12 @@ import javax.swing.JButton;
 public class MyButton extends JButton{
 	MyButton(String s){
 		super(s);
-		setPreferredSize(new Dimension(150, 30));
+		setPreferredSize(new Dimension(100, 30));
+		setMaximumSize(new Dimension(150, 30));
+		setMinimumSize(new Dimension(150, 30));
 		final Timer time = new Timer();
-		int i = 15 - s.length();
-    	for (int j = 0; j < i; j++){
-    		s += " ";
-    	}
-		final String str = s;
+		
+		final String str = modifyText(s);
 		mySetText(str);
 		
         time.schedule(new TimerTask() {
@@ -28,15 +27,19 @@ public class MyButton extends JButton{
         }, 100, 100);
 	}
 	public void mySetText(String str){
-		if (str.length() < 15){
-        	int i = 15 - str.length();
-        	for (int j = 0; j < i; j++){
-        		str += " ";
-        	}
-        	setText("|" + str + "|");
-        }
-		else {
-			setText("|" + str.substring(0, 13) + "|");
-		}
+		setText(" " + str.substring(0, 15) + " ");
+	}
+	public String modifyText(String s){
+		int i = 15 - s.length();
+    	if (i > 0){
+    		for (int j = 0; j < i; j++){
+    			s += " ";
+    		}
+    	}
+    	else
+    	{
+    		s += " ";
+    	}
+		return s;
 	}
 }

@@ -10,7 +10,7 @@ public class Task2 {
 	public static Box getPanel2() {
         final JTextField textField = new JTextField("");
         textField.setMaximumSize(new Dimension(500, 30));
-        final JButton renameButton = new JButton("Rename button");
+        final JButton renameButton = new MyButton("Rename button");
         final JButton exchangeButton = new JButton("Exchange");
         exchangeButton.addActionListener(new ActionListener()  {
         	
