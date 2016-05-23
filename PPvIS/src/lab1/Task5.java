@@ -30,7 +30,7 @@ public class Task5 {
         final JTextField textField = new JTextField();
         textField.setMaximumSize(new Dimension(500, 30));
 
-        JButton addTextButton = new JButton("Button 1");
+        JButton addTextButton = new MyButton("Button 1");
         addTextButton.addMouseListener(new MouseAdapter() {
             
         	@Override
@@ -45,7 +45,7 @@ public class Task5 {
                 textField.setText("");
             }
         });
-        JButton textMoveButton1 = new JButton("Button 2");
+        JButton textMoveButton1 = new MyButton("Button 2");
         textMoveButton1.addActionListener(new ActionListener()  {
         	
         	@Override
@@ -73,7 +73,7 @@ public class Task5 {
             }
         });
 
-        JButton textMoveButton2 = new JButton("Button 3");
+        JButton textMoveButton2 = new MyButton("Button 3");
         textMoveButton2.addActionListener(new ActionListener()  {
         	
         	@Override

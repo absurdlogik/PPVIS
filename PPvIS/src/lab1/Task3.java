@@ -10,7 +10,7 @@ public class Task3 {
 	public static Box getPanel3() {
         final JTextField textField = new JTextField();
         textField.setMaximumSize(new Dimension(500, 30));
-        JButton choiceButton = new JButton("Choice button");
+        JButton choiceButton = new MyButton("Choice button");
         final JRadioButton radioButton1 = new JRadioButton("1");
         final JRadioButton radioButton2 = new JRadioButton("2");
         final JRadioButton radioButton3 = new JRadioButton("3");

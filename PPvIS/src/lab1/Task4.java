@@ -13,7 +13,7 @@ public class Task4 {
         final JCheckBox checkBox1 = new JCheckBox("1");
         final JCheckBox checkBox2 = new JCheckBox("2");
         final JCheckBox checkBox3 = new JCheckBox("3");
-        JButton choiceButton = new JButton("Choice Button");
+        JButton choiceButton = new MyButton("Choice Button");
         choiceButton.addActionListener(new ActionListener()  {
 
         	@Override

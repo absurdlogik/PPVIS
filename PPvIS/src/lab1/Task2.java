@@ -11,7 +11,7 @@ public class Task2 {
         final JTextField textField = new JTextField("");
         textField.setMaximumSize(new Dimension(500, 30));
         final JButton renameButton = new MyButton("Rename button");
-        final JButton exchangeButton = new JButton("Exchange");
+        final JButton exchangeButton = new MyButton("Exchange");
         exchangeButton.addActionListener(new ActionListener()  {
         	
         	@Override

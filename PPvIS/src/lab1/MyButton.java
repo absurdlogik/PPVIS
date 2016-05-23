@@ -7,18 +7,18 @@ import java.util.TimerTask;
 import javax.swing.JButton;
 
 public class MyButton extends JButton{
-	MyButton(String s){
-		super(s);
+	MyButton(String str){
+		super(str);
 		setPreferredSize(new Dimension(100, 30));
 		setMaximumSize(new Dimension(150, 30));
 		setMinimumSize(new Dimension(150, 30));
-		final Timer time = new Timer();
+		final Timer merqueeTimer = new Timer();
 		
-		final String str = modifyText(s);
-		mySetText(str);
+		final String modificatedText = modifyText(str);
+		mySetText(modificatedText);
 		
-        time.schedule(new TimerTask() {
-            String bufStr = str;
+		merqueeTimer.schedule(new TimerTask() {
+            String bufStr = modificatedText;
             @Override
             public void run() { 
             	bufStr = bufStr.substring(1)+bufStr.substring(0, 1);
@@ -29,17 +29,17 @@ public class MyButton extends JButton{
 	public void mySetText(String str){
 		setText(" " + str.substring(0, 15) + " ");
 	}
-	public String modifyText(String s){
-		int i = 15 - s.length();
-    	if (i > 0){
-    		for (int j = 0; j < i; j++){
-    			s += " ";
+	public String modifyText(String str){
+		int strMissingLength = 15 - str.length();
+    	if (strMissingLength > 0){
+    		for (int i = 0; i < strMissingLength; i++){
+    			str += " ";
     		}
     	}
     	else
     	{
-    		s += " ";
+    		str += " ";
     	}
-		return s;
+		return str;
 	}
 }
