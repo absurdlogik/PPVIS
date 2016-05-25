@@ -10,23 +10,33 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import lab3.Model.GraphPoints;
+import lab3.Model.Point;
 
 public class Graph extends JPanel {
 	private int centerx=10;
 	private int centery=10;
 	private int scalex=25;
 	private int scaley=25;
+	private int sizeX=25;
 
     private double coeffX, coeffY;
 	
     GraphPoints times;
 	public int algNum;
-	
 	public Graph() {
 		times = new GraphPoints();
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(600, 600));
-        setSize(new Dimension(600, 600));
+        setPreferredSize(new Dimension(600, 400));
+        setSize(new Dimension(600, 400));
+        repaint();
+    }
+	public Graph(int minSize, int maxSize, int step) {
+		scalex = maxSize/step;
+		sizeX = maxSize;
+		times = new GraphPoints();
+        setLayout(new BorderLayout());
+        setPreferredSize(new Dimension(600, 400));
+        setSize(new Dimension(600, 400));
         repaint();
     }
 	
@@ -58,30 +68,34 @@ public class Graph extends JPanel {
         });
         
         g.drawLine(centerx, 0, centerx, getHeight());
-        for (int scaleNum = 1; scaleNum*coeffY*1000< getHeight(); scaleNum++){
+        for (int scaleNum = 1; scaleNum<scaley; scaleNum++){
         	g.drawLine(centerx/2, (int)(scaleNum*coeffY*1000-centery), centerx*3/2, (int)(scaleNum*coeffY*1000-centery));
         }
-        g.drawString(Integer.toString(scaley-1)+"mS", 2*centerx , (int) (coeffY*1000-centery));
+        g.drawString(Integer.toString(scaley)+"mS", 2*centerx , 2*centery);
         g.drawLine(0, getHeight()-centery, getWidth(), getHeight()-centery);
-        for (int scaleNum = 1; scaleNum*coeffX+2*centerx< getWidth(); scaleNum++){
+        for (int scaleNum = 1; scaleNum<scalex; scaleNum++){
         	g.drawLine((int)(scaleNum*coeffX+centerx), getHeight()-centery/2, (int) (scaleNum*coeffX+centerx), getHeight()-centerx*3/2);
         }
-        g.drawString("Size"+Integer.toString(scalex), (int)(getWidth()-(coeffX+centerx)) , getHeight()-centerx*2);
-        /*for (int bufAlgNum = 0; bufAlgNum < algNum; bufAlgNum++){
-        	int prevX = centerx;
-        	int prevY = centery;
-        	for (List time : times){
-        		g.drawLine(prevX, getHeight()-prevY, (int) (prevX+coeffX), getHeight()-(int)(centery+(int)(time.get(bufAlgNum))*coeffY));
-        		prevX+=coeffX;
-        		prevY=(int)(centery+(int)time.get(bufAlgNum)*coeffY);
-        	}
-        }*/
+        g.drawString("Size"+Integer.toString(scalex), (int)(getWidth()-(centery*5)) , getHeight()-centerx*2);
+      
+        Point prevPoint = new Point(0, 0);
+        for (Point point : times.points){
+        	paintLine(g, prevPoint, point);
+        	prevPoint = point;
+        }
 	}
-	public void paintLine(Graphics g, Point p1, Point p2){
-		//g.drawLine();
+	private void paintLine(Graphics g, Point p1, Point p2){
+		int x1 = (int) (centerx+p1.x*coeffX);
+		int y1 = (int) (getHeight()-centery-p1.y*coeffY);
+		int x2 = (int) (centerx+p2.x*coeffX);
+		int y2 = (int) (getHeight()-centery-p2.y*coeffY);
+		g.drawLine(x1, y1, x2, y2);
 	}
-	
-	public void scaleXUp(){
+	public void addPoint(Point p){
+		times.addPoint(p);
+		updateG();
+	}
+	public void scaleYUp(){
     	if (scaley<10){
     		scaley +=1;
     	}
@@ -90,7 +104,7 @@ public class Graph extends JPanel {
     	}
 		repaint();
     }
-    public void scaleXDown(){
+    public void scaleYDown(){
     	if (scaley>10){
     		scaley -= 5;
     	}
@@ -99,6 +113,26 @@ public class Graph extends JPanel {
     	}
     	repaint();
     }
+    
+    public void scaleXUp(){
+    	if (scalex<100){
+    		scalex +=10;
+    	}
+    	else if (scalex<1000){
+    		scalex += 5;
+    	}
+		repaint();
+    }
+    public void scaleXDown(){
+    	if (scalex>100){
+    		scalex -= 50;
+    	}
+    	else if (scalex > 10){
+    		scalex -= 10;
+    	}
+    	repaint();
+    }
+    
     public void updateG(){
     	removeAll();
         updateUI();

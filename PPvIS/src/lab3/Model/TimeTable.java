@@ -11,27 +11,25 @@ import lab3.Controller.SortTime;
 public class TimeTable extends JTable{
 	private DefaultTableModel model;
 	private int SortedListSize = 1000; 
-	public List<List> times = new ArrayList<List>();
+	public List<Point> times = new ArrayList<Point>();
 	public int AlgNum = SortTime.AlgNum;
 	
 	private DefaultTableModel getMyModel(){
 		
 		model = new DefaultTableModel();
-		model.addColumn("Test number");
-		model.addColumn("Quick sort");
-		model.addColumn("Bubble sort");
+		model.addColumn("Size");
+		model.addColumn("Time, micro");
 		
 		return model;
 	}
 	
-	public TimeTable(int arrayNumber) {
+	public TimeTable() {
 		model = getMyModel();
 		this.setModel(model);
-		for (int testNum = 1; testNum <= arrayNumber; testNum++){
-			List<Integer> bufTime = SortTime.sortTime(SortTime.generateList(SortedListSize));
-			String[] data = {Integer.toString(testNum), Integer.toString(bufTime.get(0)), Integer.toString(bufTime.get(1))}; 
-            model.addRow(data);
-            times.add(bufTime);
-		} 
+	}
+	public void addRow(Point p){
+		String[] data = {Integer.toString(p.x), Integer.toString(p.y)}; 
+        model.addRow(data);
+        times.add(p);
 	}
 }

@@ -16,32 +16,33 @@ public class SortTime {
 		
 		return generatedList;
 	}
-	public static List<Integer> sortTime(List<Integer> generatedList){
-		List<Integer> sortTimeList = new ArrayList<Integer>();
+	public static long sortTime(List<Integer> generatedList){
 		long startTime, endTime, traceTime;
 		startTime = System.nanoTime();
-        Collections.sort(generatedList);
+        insertionSort(generatedList);
         endTime = System.nanoTime();
         traceTime = (endTime - startTime)/1000;
-        sortTimeList.add((int) traceTime);
-		
-        startTime = System.nanoTime();
-        bubbleSort(generatedList);
-        endTime = System.nanoTime();
-        traceTime = (endTime - startTime)/1000;
-        sortTimeList.add((int) traceTime);
-        
-		return sortTimeList;
+        return traceTime;
 	}
-	private static void bubbleSort(List<Integer> arr) {
-        for (int i = 0; i < arr.size() - 1; i++) {
-            for (int j = 0; j < arr.size() - i - 1; j++) {
-                if (arr.get(j) > arr.get(j + 1)) {
-                    int t = arr.get(j);
-                    arr.set(j, j + 1);
-                    arr.set(j + 1, t);
-                }
-            }
-        }
+	public static long sortAverageTime(int size, int iterationsNum){
+		long averageTime = 0, time;
+		for (int num = 0; num < iterationsNum; num++){
+			time = sortTime(generateList(size));
+			averageTime += time;
+		}
+		averageTime /= iterationsNum;
+		return averageTime;
+	}
+	private static void insertionSort(List<Integer> arr) {
+		int i, j, index;
+		for (i=1; i < arr.size(); i++) {
+		    index = arr.get(i);
+		    j = i;
+		    while ((j > 0) && (arr.get(j-1) > index)) {
+		      arr.set(j, arr.get(j-1));
+		      j = j - 1;
+		    }
+		    arr.set(j, index);
+		  }
     }
 }

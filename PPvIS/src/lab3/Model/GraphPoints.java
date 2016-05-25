@@ -10,4 +10,7 @@ public class GraphPoints {
 	public void addPoint(int x, int y){
 		points.add(new Point(x, y));
 	}
+	public void addPoint(Point p){
+		points.add(p);
+	}
 }
